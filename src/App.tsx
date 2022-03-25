@@ -1,25 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Main from './pages/main';
+import SignIn from './pages/sign-in';
+import SignUp from './pages/sign-up';
+import Write from './pages/write';
+
+const AppStyle = styled.div`
+  width: 100vw;
+
+  ul {
+    list-style : none;
+    padding-left: 0px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppStyle>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/write" element={<Write />} />
+        </Routes>
+      </BrowserRouter>
+    </AppStyle>
   );
 }
 
