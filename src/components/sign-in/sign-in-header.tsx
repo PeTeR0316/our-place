@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignInHeaderStyle = styled.div`
     width: 100%;
@@ -8,15 +8,20 @@ const SignInHeaderStyle = styled.div`
     .signInHeaderContainer {
         width: 100%
         padding-left: 0.63rem;
+
+        .pageTitle {
+            padding: 0px 0.5rem;
+        }
     }
 `;
 
 const SignInHeader = () => {
+    const navigate = useNavigate();
     return (
         <SignInHeaderStyle>
             <div className="signInHeaderContainer">
-                <Link to="/">뒤로</Link>
-                <span>로그인</span>
+                <span onClick={()=>navigate(-1)}>뒤로</span>
+                <span className="pageTitle">로그인</span>
             </div>
         </SignInHeaderStyle>
     )

@@ -9,8 +9,16 @@ const SignInStyle = styled.div`
     width: 100%;
 
     .signInContainer {
-        width: 100%
-        padding-left: 0.63rem;
+        width: 100%;
+        padding: 0.63rem;
+
+        .signBtn {
+            display:inline-block;
+            margin-top: 50px;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+        }
     }
 `;
 
@@ -20,7 +28,9 @@ const SignIn = () => {
             <div className="signInContainer">
                 <SignInHeader />
                 <SignInForm />
-                <Link to="/signup">회원가입</Link>
+
+                
+                <Link to="/signup" className="signBtn">회원가입</Link>
             </div>
         </SignInStyle>
     )

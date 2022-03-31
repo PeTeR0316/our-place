@@ -5,6 +5,7 @@ import SignUpHeader from "../../components/sign-up/sign-up-header";
 import SignUpForm from "../../components/sign-up/sign-up-form";
 
 const SignUnStyle = styled.div`
+    padding: 0.63rem;
 `;
 
 const SignUp = () => {

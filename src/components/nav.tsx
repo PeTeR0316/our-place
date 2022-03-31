@@ -7,7 +7,9 @@ const NavStyle = styled.nav`
         border-bottom: 1px solid #cccccc;
         
         .mainMenu {
-
+            display: flex;
+            justify-content: space-around;
+            
             .mainMenuList {
                 display: inline-block;
                 padding: 0.63rem;

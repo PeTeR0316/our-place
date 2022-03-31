@@ -4,17 +4,24 @@ import styled from "styled-components";
 
 const BottomMenuStyle = styled.div`
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     z-index: 99;
+    background-color: #ffffff;
 
     .bottomMenuContainer {
         width: 100%;
+        border-top: 1px solid #eeeeee;
 
         .BottomMenu {
+            display: flex;
+            justify-content: space-around;
 
             .bottomMenuList {
                 display: inline-block;
+                font-size: 1rem;
+                height: 2.6rem;
+                line-height: 3rem;
             }
         }
     }

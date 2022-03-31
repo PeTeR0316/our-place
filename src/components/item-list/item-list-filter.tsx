@@ -3,12 +3,16 @@ import styled from "styled-components";
 
 const ItemListFilterStyle = styled.div`
     width: 100%;
+    position: sticky;
+    top: 0px;
+    background-color: #ffffff;
 
     .filterContainer {
         width: 100%;
         display: flex;
         justify-content: space-between;
         padding : 0.63rem;
+        border-bottom: 1px solid #eeeeee;
 
         .resultCount {
             font-size: 1rem;

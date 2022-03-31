@@ -7,6 +7,7 @@ import UploadForm from "../../components/write/upload-form";
 
 const WriteStyle = styled.div`
     width: 100%;
+    padding: 0.63rem;
 `;
 
 const Write = () => {
@@ -15,7 +16,7 @@ const Write = () => {
             <WriteHeader />
             <WriteForm />
             <br /><br />
-            <UploadForm />
+            {/* <UploadForm /> */}
         </WriteStyle>
     )
 };
