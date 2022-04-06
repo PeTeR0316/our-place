@@ -90,10 +90,10 @@ const SignUpForm = () => {
 
     const userInfoSubmit = async () => {
         if(userInfo.password === userInfo.passwordCheck) {
-            axios.post("http://localhost:3001/member/signup",userInfo)
+            axios.post("http://localhost:3001/member/signup/",userInfo)
             .then((response) => {
                 if(response.data[0].count > 0) {
-                    console.log(response.data[0] + "이미 회원가입된 계정입니다.")
+                    alert(response.data[0] + "이미 회원가입된 계정입니다.")
                 } else {
                     window.location.href = '/login';
                 }

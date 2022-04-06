@@ -16,7 +16,7 @@ const Header = () => {
 
     useEffect(() => {
         setUserName(localStorage.getItem('ourplace_name'));
-    })
+    },[userName])
 
     return (
         <HeaderStyle>

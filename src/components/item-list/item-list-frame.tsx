@@ -26,11 +26,19 @@ const ItemListFrameStyle = styled.div`
             width: 7rem;
             height: 7rem;
             background-color: #dddddd;
+
+            .reviewThumnailImg {
+                width: 100%;
+            }
         }
     }
 `
 
-const ItemListFrame = () => {
+interface reviewImgSrc {
+    imgSrc?: string,
+}
+
+const ItemListFrame = ({imgSrc}:reviewImgSrc) => {
     return (
         <ItemListFrameStyle>
             <div className="itemInfoArea">
@@ -44,7 +52,7 @@ const ItemListFrame = () => {
                     <p>작성자명</p>
                 </div>
                 <div className="thumbnail">
-
+                    <img src={imgSrc} className="reviewThumnailImg" alt="review-thumnail-img" />
                 </div>
             </div>
         </ItemListFrameStyle>
