@@ -21,6 +21,23 @@ const WriteFormStyle = styled.div`
                     .writeTitle {
                         font-size: 1.1rem;
                         font-weight: 400;
+                        margin : 0px;
+                        padding: 0.8rem 0px;
+                    }
+
+                    .writeInput {
+                        width: 100%;
+                        height: 2.5rem;
+                        margin-bottom: 0.8rem;
+                        border: 1px solid #dddddd;
+                        border-radius: 5px;
+                        padding-left: 0.5rem;
+                    }
+
+                    .writeInputFile {
+                        width: 100%;
+                        height: 2rem;
+                        margin-bottom: 0.8rem;
                     }
 
                     .reviewTextarea {
@@ -50,6 +67,7 @@ const WriteFormStyle = styled.div`
 
 //사용자 입력값 타입
 interface WriteInfo {
+    storeName: string
     subway: string,
     keyword: string,
     placeInfo: string,
@@ -59,7 +77,9 @@ interface WriteInfo {
 
 const WriteForm = () => {
     // let uploadFile:File;
+    const name:string | null = `${localStorage.getItem('ourplace_name')}`;
     const [writeInfo , setWriteInfo] = useState<WriteInfo>({
+        storeName: "",
         subway: "",
         keyword: "",
         placeInfo: "",
@@ -109,15 +129,17 @@ const WriteForm = () => {
     //입력 값 전송
     const uploadFn = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formData = new FormData();
 
+        const formData = new FormData();
+        
+        formData.append('name', name);
         formData.append('files',writeInfo.uploadFile);
+        formData.append('storeName',writeInfo.storeName);
         formData.append('subway',writeInfo.subway);
         formData.append('keyword',writeInfo.keyword);
         formData.append('placeInfo',writeInfo.placeInfo);
         formData.append('review',writeInfo.review);
 
-        console.log(formData)
         
         await axios({
             method: 'post',
@@ -126,7 +148,9 @@ const WriteForm = () => {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-        });
+        })
+
+        window.location.href = '/';
     }
 
     return (
@@ -137,15 +161,27 @@ const WriteForm = () => {
                 >
                     <ul className="writeInfo">
                         <li className="writeInfoList">
+                            <p className="writeTitle">이미지 등록</p>
                             <input type="file" 
+                                className="writeInputFile"
                                 name="uploadFile" 
                                 accept="image/*" 
                                 onChange={onChangeImg}
                             />
                         </li>
                         <li className="writeInfoList">
-                            <p className="writeTitle">가까운 지하철역</p>
+                            <p className="writeTitle">업체명</p>
                             <input type="text" 
+                                className="writeInput"
+                                name="storeName"
+                                placeholder="업체명 입력하세요." 
+                                onChange={userInfoWrite}
+                            />
+                        </li>
+                        <li className="writeInfoList">
+                            <p className="writeTitle">가까운 지하철역</p>
+                            <input type="text"
+                                className="writeInput" 
                                 name="subway"
                                 placeholder="지하철역을 입력하세요." 
                                 onChange={userInfoWrite}
@@ -154,6 +190,7 @@ const WriteForm = () => {
                         <li className="writeInfoList">
                             <p className="writeTitle">이 장소를 잘 표현하는 키워드</p>
                             <input type="text" 
+                                className="writeInput"
                                 name="keyword"
                                 placeholder="키워드를 입력하세요." 
                                 onChange={userInfoWrite}
@@ -162,6 +199,7 @@ const WriteForm = () => {
                         <li className="writeInfoList">
                             <p className="writeTitle">유용한 장소 정보</p>
                             <input type="text" 
+                                className="writeInput"
                                 name="placeInfo"
                                 placeholder="장소 정보를 입력하세요." 
                                 onChange={userInfoWrite}

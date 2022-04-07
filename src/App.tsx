@@ -6,6 +6,7 @@ import Main from './pages/main';
 import SignIn from './pages/sign-in';
 import SignUp from './pages/sign-up';
 import Write from './pages/write';
+import Store from './pages/store';
 
 const AppStyle = styled.div`
   width: 100vw;
@@ -34,6 +35,7 @@ function App() {
           <Route path="/login" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/write" element={<Write />} />
+          <Route path="/store/:storeId" element={<Store />} />
         </Routes>
       </BrowserRouter>
     </AppStyle>

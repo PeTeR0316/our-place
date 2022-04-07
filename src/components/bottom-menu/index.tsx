@@ -27,6 +27,16 @@ const BottomMenuStyle = styled.div`
     }
 `
 
+const signInCheck = () => {
+    //alert(localStorage.getItem('ourplace_name'));
+
+    if(!localStorage.getItem('ourplace_name')) {
+        console.log("로그인 후 작성이 가능합니다.")
+    } else {
+        window.location.href = '/write';
+    }
+}
+
 const BottomMenu = () => {
     return (
         <BottomMenuStyle>
@@ -42,10 +52,10 @@ const BottomMenu = () => {
                             순위
                         </Link>
                     </li>
-                    <li className="bottomMenuList">
-                        <Link to="/write">
-                            글쓰기
-                        </Link>
+                    <li className="bottomMenuList"
+                        onClick={signInCheck}
+                    >
+                        글쓰기
                     </li>
                     <li className="bottomMenuList">
                         <Link to="/">

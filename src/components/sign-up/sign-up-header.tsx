@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const SignUpHeaderStyle = styled.div`
     width: 100%;
+    padding : 0.6rem 0px;
 
     .signUpHeaderContainer {
         width: 100%
@@ -11,6 +12,7 @@ const SignUpHeaderStyle = styled.div`
 
         .pageTitle {
             padding: 0px 0.5rem;
+            font-size: 1.1rem;
         }
     }
 `;
@@ -21,7 +23,7 @@ const SignUpHeader = () => {
     return (
         <SignUpHeaderStyle>
             <div className="signUpHeaderContainer">
-                <span onClick={()=>navigate(-1)}>뒤로</span>
+                <span onClick={()=>navigate(-1)}>{`<-`}</span>
                 <span className="pageTitle">회원가입</span>
             </div>
         </SignUpHeaderStyle>

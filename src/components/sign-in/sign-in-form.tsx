@@ -74,7 +74,7 @@ const SignInForm = () => {
         console.log(loginInfo)
     }
 
-    const loginInfoSubmit = async () => {
+    const signInfoSubmit = async () => {
         await axios.post("http://localhost:3001/member/signin",loginInfo)
         .then((response) => {
             // console.log(response.data[0]);
@@ -130,7 +130,7 @@ const SignInForm = () => {
 
                     <button type="submit"
                         className="signInBtn"
-                        onClick={loginInfoSubmit}
+                        onClick={signInfoSubmit}
                     >
                         로그인
                     </button>

@@ -11,16 +11,19 @@ const ItemListStyle = styled.div`
     overflow: scroll;
     padding-bottom: 5rem;
 
-    .moreBtn {
-        width: 100%;
-        height: 3rem;
-        text-align: center;
-        margin-top: 2rem;
-        border: none;
-        width: 80%;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+    .moreArea {
+        padding: 0.63rem;
+        
+        .moreBtn {
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+            border: none;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
 `;
 
@@ -41,26 +44,23 @@ const ItemList = () => {
     return (
         <ItemListStyle style={{height:`${itemListCount}rem`}}>
             <ItemListFilter />
-            {/* <ItemListFrame />
-            <ItemListFrame />
-            <ItemListFrame />
-            <ItemListFrame />
-            <ItemListFrame />
-            <ItemListFrame />
-            <ItemListFrame />
-            <ItemListFrame /> */}
 
             {reviewImg.map((reviewImgName, index) => {
                 return (
-                    <ItemListFrame imgSrc={`${reviewUrl}${reviewImgName}`}/>
+                    <ItemListFrame 
+                        imgSrc={`${reviewUrl}${reviewImgName}`}
+                        imgName={`${reviewImgName}`}
+                    />
                 )
             })}
 
-            <button type="button" className="moreBtn"
-                onClick={() => setItemListCount(itemListCount + 30)}
-            >
-                더보기+
-            </button>
+            <div className="moreArea">
+                <button type="button" className="moreBtn"
+                    onClick={() => setItemListCount(itemListCount + 30)}
+                >
+                    더보기+
+                </button>
+            </div>
         </ItemListStyle>
     )
 };
