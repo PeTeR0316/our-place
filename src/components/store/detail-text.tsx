@@ -19,7 +19,8 @@ const DetailTextStyle = styled.div`
         }
 
         .reviewArea {
-            padding: 0.5rem
+            padding: 0.5rem;
+            word-break: keep-all;
         }
     }
 `;

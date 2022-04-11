@@ -13,7 +13,7 @@ const ItemListStyle = styled.div`
 
     .moreArea {
         padding: 0.63rem;
-        
+
         .moreBtn {
             width: 100%;
             height: 3rem;
@@ -28,7 +28,7 @@ const ItemListStyle = styled.div`
 `;
 
 const ItemList = () => {
-    const [itemListCount, setItemListCount] = useState<number>(50);
+    const [itemListCount, setItemListCount] = useState<number>(5);
     const [reviewImg, setReviewImg] = useState<Array<string>>([]);
     const reviewUrl = "https://our-place.s3.ap-northeast-2.amazonaws.com/write-img/";
 
@@ -42,21 +42,24 @@ const ItemList = () => {
     },[]);
 
     return (
-        <ItemListStyle style={{height:`${itemListCount}rem`}}>
+        // <ItemListStyle style={{height:`${itemListCount}rem`}}>
+        <ItemListStyle>
             <ItemListFilter />
 
             {reviewImg.map((reviewImgName, index) => {
-                return (
-                    <ItemListFrame 
-                        imgSrc={`${reviewUrl}${reviewImgName}`}
-                        imgName={`${reviewImgName}`}
-                    />
-                )
+                if(index < itemListCount) {
+                    return (
+                        <ItemListFrame 
+                            imgSrc={`${reviewUrl}${reviewImgName}`}
+                            imgName={`${reviewImgName}`}
+                        />
+                    )
+                }
             })}
 
             <div className="moreArea">
                 <button type="button" className="moreBtn"
-                    onClick={() => setItemListCount(itemListCount + 30)}
+                    onClick={() => setItemListCount(itemListCount + 5)}
                 >
                     더보기+
                 </button>
