@@ -7,6 +7,7 @@ import SignIn from './pages/sign-in';
 import SignUp from './pages/sign-up';
 import Write from './pages/write';
 import Store from './pages/store';
+import Mypage from './pages/mypage';
 
 const AppStyle = styled.div`
   width: 100vw;
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<SignIn />} />
+          <Route path="/mypage" element={<Mypage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/write" element={<Write />} />
           <Route path="/store/:storeId" element={<Store />} />

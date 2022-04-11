@@ -34,10 +34,9 @@ const BottomMenuStyle = styled.div`
 `
 
 const signInCheck = () => {
-    //alert(localStorage.getItem('ourplace_name'));
-
     if(!localStorage.getItem('ourplace_name')) {
-        console.log("로그인 후 작성이 가능합니다.")
+        alert("로그인 후 작성이 가능합니다.");
+        window.location.href = '/login';
     } else {
         window.location.href = '/write';
     }
@@ -69,7 +68,7 @@ const BottomMenu = () => {
                         </Link>
                     </li>
                     <li className="bottomMenuList">
-                        <Link to="/login">
+                        <Link to={!localStorage.getItem('ourplace_name') === true ? "/login" : "/mypage"}>
                             내정보
                         </Link>
                     </li>

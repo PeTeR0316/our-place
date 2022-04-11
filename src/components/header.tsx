@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 const HeaderStyle = styled.header`
     .headerContainer {
         display: flex;
@@ -8,9 +8,9 @@ const HeaderStyle = styled.header`
 
         .title {
             font-size: 2rem;
+            font-weight: 800;
             padding-left: 0.63rem;
             margin: 1rem 0px;
-            color: rgb(27, 105, 53);
         }
 
         .userName {
@@ -30,7 +30,9 @@ const Header = () => {
     return (
         <HeaderStyle>
             <div className="headerContainer">
-                <h1 className="title">Our Place</h1>
+                <h1 className="title">
+                    <Link to="/">Our Place</Link>
+                </h1>
                 <span className="userName">{userName}</span>
             </div>
         </HeaderStyle>
