@@ -9,16 +9,15 @@ const ItemListStyle = styled.div`
     width: 100%;
     position: relative;
     overflow: scroll;
-    padding-bottom: 5rem;
+    padding-bottom: 3.5rem;
 
     .moreArea {
-        padding: 0.63rem;
+        padding: 1rem 0.63rem;
 
         .moreBtn {
             width: 100%;
             height: 3rem;
             text-align: center;
-            margin-top: 2rem;
             border: none;
             position: relative;
             left: 50%;

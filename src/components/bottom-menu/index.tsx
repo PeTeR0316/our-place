@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 const BottomMenuStyle = styled.div`
     width: 100%;
+    height: 3.5rem;
+    display:inline-block;
     position: fixed;
     bottom: 0px;
     z-index: 99;
@@ -11,17 +13,21 @@ const BottomMenuStyle = styled.div`
 
     .bottomMenuContainer {
         width: 100%;
+        height: 100%;
         border-top: 1px solid #eeeeee;
+        display:inline-block;
 
         .BottomMenu {
+            height: 100%;
             display: flex;
             justify-content: space-around;
+            margin: 0;
 
             .bottomMenuList {
                 display: inline-block;
                 font-size: 1rem;
-                height: 2.6rem;
-                line-height: 3rem;
+                height: 100%;
+                line-height: 3.5rem;
             }
         }
     }

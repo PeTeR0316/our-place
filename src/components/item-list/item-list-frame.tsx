@@ -20,7 +20,10 @@ const ItemListFrameStyle = styled.div`
                 display:inline-block;
                 width: 100%;
                 margin: 0px;
-                padding-bottom: 0.5rem;
+
+                :not(:last-child) {
+                    padding-bottom: 0.5rem;
+                }
 
                 .infotitle {
                     padding-right: 0.3rem;
