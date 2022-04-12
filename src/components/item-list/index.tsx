@@ -25,6 +25,10 @@ const ItemListStyle = styled.div`
             transform: translateX(-50%);
         }
     }
+
+    .none {
+        display: none;
+    }
 `;
 
 const ItemList = () => {
@@ -57,7 +61,7 @@ const ItemList = () => {
                 }
             })}
 
-            <div className="moreArea">
+            <div className={`moreArea ${itemListCount > reviewImg.length ? 'none' : '' }`}>
                 <button type="button" className="moreBtn"
                     onClick={() => setItemListCount(itemListCount + 5)}
                 >

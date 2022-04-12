@@ -8,7 +8,8 @@ import ReviewListFilter from "./review-list-filter";
 import ReviewListFrame from "./review-list-frame";
 
 const MypageReviewStyle = styled.div`
-    overflow: scroll;
+    width: 100%;
+    padding-bottom: 1rem;
 
     .myReviewList {
         border-bottom : 1px solid #eeeeee;
@@ -63,6 +64,10 @@ const MypageReviewStyle = styled.div`
             left: 50%;
             transform: translateX(-50%);
         }
+    }
+
+    .none {
+        display: none;
     }
 `;
 
@@ -126,7 +131,7 @@ const MypageReview = () => {
             })}
 
 
-            <div className="moreArea">
+            <div className={`moreArea ${itemListCount > reviewList.length ? 'none' : '' }`}>
                 <button type="button" className="moreBtn"
                     onClick={() => setItemListCount(itemListCount + 5)}
                 >
