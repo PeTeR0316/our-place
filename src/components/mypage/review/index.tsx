@@ -4,46 +4,55 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import MypageMenuHeader from "../mypage-menu-header";
+import ReviewListFilter from "./review-list-filter";
+import ReviewListFrame from "./review-list-frame";
 
 const MypageReviewStyle = styled.div`
-    padding: 0.63rem;
+    overflow: scroll;
 
-    .itemInfoArea {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+    .myReviewList {
+        border-bottom : 1px solid #eeeeee;
 
-        .itemInfo {
-            display:inline-block;
-
-            .itemInfoList {
+        .itemInfoArea {
+            padding: 0.63rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+    
+            .itemInfo {
                 display:inline-block;
-                width: 100%;
-                margin: 0px;
-
-                :not(:last-child) {
-                    padding-bottom: 0.5rem;
-                }
-
-                .infotitle {
-                    padding-right: 0.3rem;
+    
+                .itemInfoList {
+                    display:inline-block;
+                    width: 100%;
+                    margin: 0px;
+    
+                    :not(:last-child) {
+                        padding-bottom: 0.5rem;
+                    }
+    
+                    .infotitle {
+                        padding-right: 0.3rem;
+                    }
                 }
             }
-        }
-
-        .thumbnail {
-            display:inline-block;
-
-            .reviewThumnailImg {
-                width: 8rem;
-                height: 8rem;
-                object-fit: cover;
+    
+            .thumbnail {
+                display:inline-block;
+    
+                .reviewThumnailImg {
+                    width: 8rem;
+                    height: 8rem;
+                    object-fit: cover;
+                }
             }
         }
     }
 
     .moreArea {
+        padding: 0.63rem;
         margin-top: 2rem;
+
         .moreBtn {
             width: 100%;
             height: 3rem;
@@ -98,56 +107,24 @@ const MypageReview = () => {
     return (
         <MypageReviewStyle>
             <MypageMenuHeader title="작성한 리뷰" />
-            <p>작성한 리뷰 <span>{reviewList.length}</span>개</p>
+            <ReviewListFilter count={`${reviewList.length}`}/>
+
             
             {reviewList.map((reviewinfo, index) => {
                 if(index < itemListCount) {
                     return (
-                        <Link to={`/store/${reviewinfo.file_src}`}>
-                            <div className="itemInfoArea">
-                                <div className="itemInfo">
-                                    <p className="itemInfoList">
-                                        <span className="infotitle">
-                                            업체명:
-                                        </span> 
-                                        {reviewinfo.place_name}    
-                                    </p>
-                                    <p className="itemInfoList">
-                                        <span className="infotitle">
-                                            위치:
-                                        </span>
-                                        {reviewinfo.subway}
-                                    </p>
-                                    <p className="itemInfoList">
-                                        <span className="infotitle">
-                                            태그 리스트:
-                                        </span>
-                                        {reviewinfo.keyword}
-                                    </p>
-                                    <p className="itemInfoList">
-                                        <span className="infotitle">
-                                            작성자명:
-                                        </span>
-                                        {reviewinfo.user_name}
-                                    </p>
-                                    <p className="itemInfoList">
-                                        <span className="infotitle">
-                                            작성일:
-                                        </span>
-                                        {reviewinfo.write_date.slice(0,10)}
-                                    </p>
-                                </div>
-                                <div className="thumbnail">
-                                    <img src={`${reviewUrl}${reviewinfo.file_src}`} 
-                                        className="reviewThumnailImg" 
-                                        alt="review-thumnail-img" 
-                                    />
-                                </div>
-                            </div>
-                        </Link>
+                        <ReviewListFrame 
+                            place_name={`${reviewinfo.place_name}`}
+                            subway={`${reviewinfo.subway}`}
+                            keyword={`${reviewinfo.keyword}`}
+                            user_name={`${reviewinfo.user_name}`}
+                            write_date={`${reviewinfo.write_date}`}
+                            file_src={`${reviewinfo.file_src}`}
+                        />
                     )
                 }
             })}
+
 
             <div className="moreArea">
                 <button type="button" className="moreBtn"
