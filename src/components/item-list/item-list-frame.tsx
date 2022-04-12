@@ -55,7 +55,7 @@ interface StoreInfo {
     subway: string,
     keyword: string,
     placeInfo: string,
-    review: string
+    review: string,
     write_date: string
 }
 
@@ -69,7 +69,7 @@ const ItemListFrame = ({imgSrc, imgName}:reviewImgSrc) => {
             keyword: "",
             placeInfo: "",
             review: "",
-            write_date: ""
+            write_date: "",
         }
     ]);
 
@@ -88,8 +88,7 @@ const ItemListFrame = ({imgSrc, imgName}:reviewImgSrc) => {
     return (
         <ItemListFrameStyle>
             <Link to={`/store/${imgName}`}>
-            <div className="itemInfoArea">
-                
+                <div className="itemInfoArea">
                     <div className="itemInfo">
                         <p className="itemInfoList">
                             <span className="infotitle">
@@ -128,8 +127,7 @@ const ItemListFrame = ({imgSrc, imgName}:reviewImgSrc) => {
                             alt="review-thumnail-img" 
                         />
                     </div>
-
-            </div>
+                </div>
             </Link>
         </ItemListFrameStyle>
     )

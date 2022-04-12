@@ -19,6 +19,7 @@ const ItemListStyle = styled.div`
             height: 3rem;
             text-align: center;
             border: none;
+            border-radius: 0.4rem;
             position: relative;
             left: 50%;
             transform: translateX(-50%);

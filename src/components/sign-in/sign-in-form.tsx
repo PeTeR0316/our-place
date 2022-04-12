@@ -70,8 +70,6 @@ const SignInForm = () => {
             ...loginInfo,
             [targetName]: e.target.value // name 키를 가진 값을 이벤트가 발생한 value로 변경
         });
-
-        console.log(loginInfo)
     }
 
     const signInfoSubmit = async () => {

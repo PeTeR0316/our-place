@@ -76,8 +76,7 @@ interface WriteInfo {
 }
 
 const WriteForm = () => {
-    // let uploadFile:File;
-    const name:string | null = `${localStorage.getItem('ourplace_name')}`;
+    // const name:string | null = `${localStorage.getItem('ourplace_name')}`;
     const [writeInfo , setWriteInfo] = useState<WriteInfo>({
         storeName: "",
         subway: "",
@@ -110,8 +109,6 @@ const WriteForm = () => {
             ...writeInfo,
             [targetName]: e.target.value // name 키를 가진 값을 이벤트가 발생한 value로 변경
         });
-
-        console.log(writeInfo)
     }
 
     //리뷰 상태 값 변경
@@ -122,8 +119,6 @@ const WriteForm = () => {
             ...writeInfo,
             [targetName]: e.target.value // name 키를 가진 값을 이벤트가 발생한 value로 변경
         });
-
-        console.log(writeInfo)
     }
 
     //입력 값 전송
@@ -132,14 +127,14 @@ const WriteForm = () => {
 
         const formData = new FormData();
         
-        formData.append('name', name);
+        formData.append('name', `${localStorage.getItem('ourplace_name')}`);
+        formData.append('email',`${localStorage.getItem('ourplace_id')}`);
         formData.append('files',writeInfo.uploadFile);
         formData.append('storeName',writeInfo.storeName);
         formData.append('subway',writeInfo.subway);
         formData.append('keyword',writeInfo.keyword);
         formData.append('placeInfo',writeInfo.placeInfo);
         formData.append('review',writeInfo.review);
-
         
         await axios({
             method: 'post',

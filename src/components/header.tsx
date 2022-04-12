@@ -33,7 +33,7 @@ const Header = () => {
                 <h1 className="title">
                     <Link to="/">Our Place</Link>
                 </h1>
-                <span className="userName">{userName}</span>
+                
             </div>
         </HeaderStyle>
     )
