@@ -25,13 +25,17 @@ const ItemListFilterStyle = styled.div`
     }
 `;
 
-const ItemListFilter = () => {
+interface ReviewCountProps {
+    count: string
+}
+
+const ItemListFilter = ({count}: ReviewCountProps) => {
     const [listCount, setListCount] = useState<number>(0);
 
     return (
         <ItemListFilterStyle>
             <div className="filterContainer">
-                <span className="resultCount">총 {listCount}개 결과</span>
+                <span className="resultCount">총 {count}개 결과</span>
 
                 <select name="filter" className="filterSelect">
                     <option value="new">최신순</option>

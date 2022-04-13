@@ -78,9 +78,13 @@ const ReviewListFrame = ({ place_name, subway, keyword, user_name, write_date, f
 
     const deleteReview = () => {
         console.log("delete");
-        // axios.delete(`http://localhost:3001/mypage/review/${file_src}`)
-        // .then()
-        // .catch(err => alert("해당 리뷰를 삭제하지 못 했습니다."));
+        axios.delete(`http://localhost:3001/mypage/review/delete/${file_src}`)
+        .then(response => {
+            if(response.data) {
+                console.log(response.data)
+            }
+        })
+        .catch(err => alert("해당 리뷰를 삭제하지 못 했습니다."));
     };
 
     const updateReview = () => {

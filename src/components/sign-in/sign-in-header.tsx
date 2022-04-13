@@ -7,7 +7,7 @@ const SignInHeaderStyle = styled.div`
     padding : 0.6rem 0px;
 
     .signInHeaderContainer {
-        width: 100%
+        width: 100%;
         padding-left: 0.63rem;
 
         .pageTitle {

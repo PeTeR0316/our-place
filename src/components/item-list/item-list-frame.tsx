@@ -43,86 +43,69 @@ const ItemListFrameStyle = styled.div`
     }
 `
 
-interface reviewImgSrc {
-    imgSrc: string,
-    imgName: string
-}
-
-interface StoreInfo {
-    user_name: string,
-    place_name: string
-    file_src: string,
+interface ReviewProps {
+    place_name: string,
     subway: string,
     keyword: string,
-    placeInfo: string,
-    review: string,
-    write_date: string
+    user_name: string,
+    write_date: string,
+    file_src: string,
 }
 
-const ItemListFrame = ({imgSrc, imgName}:reviewImgSrc) => {
-    const [storeInfo, setStoreInfo] = useState<Array<StoreInfo>>([
-        {
-            user_name: "",
-            place_name: "",
-            file_src: "",
-            subway: "",
-            keyword: "",
-            placeInfo: "",
-            review: "",
-            write_date: "",
-        }
-    ]);
 
-    useEffect(() => {
-        async function getStoreInfo() {
-            await axios.get(`http://localhost:3001/store/detail/${imgName}`)
-                .then(response => {
-                    setStoreInfo(response.data);
-                })
-                .catch(err => console.log(err))   
-        }
+const ItemListFrame = ({ place_name, subway, keyword, user_name, write_date, file_src}: ReviewProps) => {
+    const reviewUrl = "https://our-place.s3.ap-northeast-2.amazonaws.com/write-img/";
 
-        getStoreInfo();
-    },[])
+    // useEffect(() => {
+    //     async function getStoreInfo() {
+    //         await axios.get(`http://localhost:3001/store/detail/${imgName}`)
+    //             .then(response => {
+    //                 setStoreInfo(response.data);
+    //             })
+    //             .catch(err => console.log(err))   
+    //     }
+
+    //     getStoreInfo();
+    // },[])
 
     return (
         <ItemListFrameStyle>
-            <Link to={`/store/${imgName}`}>
+            <Link to={`/store/${file_src}`}>
                 <div className="itemInfoArea">
                     <div className="itemInfo">
                         <p className="itemInfoList">
                             <span className="infotitle">
                                 업체명:
                             </span> 
-                            {storeInfo[0].place_name}    
+                            {place_name}    
                         </p>
                         <p className="itemInfoList">
                             <span className="infotitle">
                                 위치:
                             </span>
-                            {storeInfo[0].subway}
+                            {subway}
                         </p>
                         <p className="itemInfoList">
                             <span className="infotitle">
                                 태그 리스트:
                             </span>
-                            {storeInfo[0].keyword}
+                            {keyword}
                         </p>
                         <p className="itemInfoList">
                             <span className="infotitle">
                                 작성자명:
                             </span>
-                            {storeInfo[0].user_name}
+                            {user_name}
                         </p>
                         <p className="itemInfoList">
                             <span className="infotitle">
                                 작성일:
                             </span>
-                            {storeInfo[0].write_date.slice(0,10)}
+                            {write_date.slice(0,10)}
                         </p>
                     </div>
                     <div className="thumbnail">
-                        <img src={imgSrc} 
+                        <img src={`${reviewUrl}${file_src}`} 
                             className="reviewThumnailImg" 
                             alt="review-thumnail-img" 
                         />

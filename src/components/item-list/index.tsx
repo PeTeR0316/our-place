@@ -8,7 +8,6 @@ import ItemListFrame from "./item-list-frame";
 const ItemListStyle = styled.div`
     width: 100%;
     position: relative;
-    overflow: scroll;
     padding-bottom: 3.5rem;
 
     .moreArea {
@@ -31,16 +30,41 @@ const ItemListStyle = styled.div`
     }
 `;
 
+interface StoreInfo {
+    user_name: string,
+    place_name: string
+    file_src: string,
+    subway: string,
+    keyword: string,
+    placeInfo: string,
+    review: string,
+    write_date: string,
+    email:string
+}
+
 const ItemList = () => {
     const [itemListCount, setItemListCount] = useState<number>(5);
-    const [reviewImg, setReviewImg] = useState<Array<string>>([]);
+    const [reviewListInfo, setReviewListInfo] = useState<StoreInfo[]>([
+        {
+            user_name: "",
+            place_name: "",
+            file_src: "",
+            subway: "",
+            keyword: "",
+            placeInfo: "",
+            review: "",
+            write_date: "",
+            email: ""
+        }
+    ])
     const reviewUrl = "https://our-place.s3.ap-northeast-2.amazonaws.com/write-img/";
 
     //s3 버킷에서 리뷰 이미지 파일명 요청
     useEffect(() => {
         axios.get('http://localhost:3001/reviewList/list')
             .then(response => {
-                setReviewImg(response.data.filter((src:string) => src !== ''));
+                // setReviewImg(response.data.filter((src:string) => src !== ''));
+                setReviewListInfo(response.data)
             })
             .catch(err => console.log(err));
     },[]);
@@ -48,20 +72,26 @@ const ItemList = () => {
     return (
         // <ItemListStyle style={{height:`${itemListCount}rem`}}>
         <ItemListStyle>
-            <ItemListFilter />
+            <ItemListFilter count={`${reviewListInfo.length}`} />
 
-            {reviewImg.map((reviewImgName, index) => {
+            {reviewListInfo.map((reviewinfo, index) => {
                 if(index < itemListCount) {
                     return (
                         <ItemListFrame 
-                            imgSrc={`${reviewUrl}${reviewImgName}`}
-                            imgName={`${reviewImgName}`}
+                            // imgSrc={`${reviewUrl}${reviewImgName}`}
+                            // imgName={`${reviewImgName}`}
+                            place_name={`${reviewinfo.place_name}`}
+                            subway={`${reviewinfo.subway}`}
+                            keyword={`${reviewinfo.keyword}`}
+                            user_name={`${reviewinfo.user_name}`}
+                            write_date={`${reviewinfo.write_date}`}
+                            file_src={`${reviewinfo.file_src}`}
                         />
                     )
                 }
             })}
 
-            <div className={`moreArea ${itemListCount > reviewImg.length ? 'none' : '' }`}>
+            <div className={`moreArea ${itemListCount > reviewListInfo.length ? 'none' : '' }`}>
                 <button type="button" className="moreBtn"
                     onClick={() => setItemListCount(itemListCount + 5)}
                 >
