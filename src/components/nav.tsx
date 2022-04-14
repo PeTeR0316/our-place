@@ -25,19 +25,19 @@ const Nav = () => {
             <div className="navContainer">
                 <ul className="mainMenu">
                     <li className="mainMenuList">
-                        <Link to="/total">전체</Link>
+                        <Link to="/">전체</Link>
                     </li>
                     <li className="mainMenuList">
-                        <Link to="/">맛집</Link>
+                        <Link to="/kind/restaurant">맛집</Link>
                     </li>
                     <li className="mainMenuList">
-                        <Link to="/">술집</Link>
+                        <Link to="/kind/pub">술집</Link>
                     </li>
                     <li className="mainMenuList">
-                        <Link to="/cafe">카페</Link>
+                        <Link to="/kind/cafe">카페</Link>
                     </li>
                     <li className="mainMenuList">
-                        <Link to="/etc">기타</Link>
+                        <Link to="/kind/etc">기타</Link>
                     </li>
                 </ul>
             </div>

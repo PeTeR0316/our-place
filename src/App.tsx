@@ -9,9 +9,12 @@ import Write from './pages/write';
 import Store from './pages/store';
 import Mypage from './pages/mypage';
 import MypageReview from './components/mypage/review';
+import Kind from './pages/kind';
 
 const AppStyle = styled.div`
   width: 100vw;
+  max-width: 1200px;
+  margin: 0 auto;
   
   * {
     box-sizing: border-box;
@@ -40,6 +43,7 @@ function App() {
           <Route path="/store/:storeId" element={<Store />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/mypage/review" element={<MypageReview />} />
+          <Route path="/kind/:kindIndex" element={<Kind />} />
         </Routes>
       </BrowserRouter>
     </AppStyle>

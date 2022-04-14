@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router";
 
-import ItemListFilter from "./item-list-filter";
-import ItemListFrame from "./item-list-frame";
+import KindReviewListFilter from "./kind-review-list-filter";
+import KindReviewListFrame from "./kind-review-list-frame";
 
 const ItemListStyle = styled.div`
     width: 100%;
@@ -42,7 +43,9 @@ interface StoreInfo {
     email:string
 }
 
-const ItemList = () => {
+const KindReviewList = () => {
+    const { kindIndex } = useParams(); 
+
     const [itemListCount, setItemListCount] = useState<number>(5);
     const [reviewListInfo, setReviewListInfo] = useState<StoreInfo[]>([
         {
@@ -61,22 +64,21 @@ const ItemList = () => {
 
     //s3 버킷에서 리뷰 이미지 파일명 요청
     useEffect(() => {
-        axios.get('http://localhost:3001/reviewList/list')
+        axios.get(`http://localhost:3001/reviewList/kind/${kindIndex}`)
             .then(response => {
-                // setReviewImg(response.data.filter((src:string) => src !== ''));
                 setReviewListInfo(response.data)
             })
             .catch(err => console.log(err));
-    },[]);
+    },[kindIndex]);
 
     return (
         <ItemListStyle>
-            <ItemListFilter count={`${reviewListInfo.length}`} />
+            <KindReviewListFilter count={`${reviewListInfo.length}`} />
 
             {reviewListInfo.map((reviewinfo, index) => {
                 if(index < itemListCount) {
                     return (
-                        <ItemListFrame 
+                        <KindReviewListFrame 
                             place_name={`${reviewinfo.place_name}`}
                             subway={`${reviewinfo.subway}`}
                             keyword={`${reviewinfo.keyword}`}
@@ -99,4 +101,4 @@ const ItemList = () => {
     )
 };
 
-export default ItemList;
+export default KindReviewList;

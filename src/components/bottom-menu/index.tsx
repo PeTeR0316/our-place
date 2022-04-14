@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const BottomMenuStyle = styled.div`
     width: 100%;
+    max-width: 1200px;
     height: 3.5rem;
     display:inline-block;
     position: fixed;
