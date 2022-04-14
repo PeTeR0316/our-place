@@ -27,6 +27,7 @@ const WriteFormStyle = styled.div`
 
                     .writeInput {
                         width: 100%;
+                        max-width: 600px;
                         height: 2.5rem;
                         margin-bottom: 0.8rem;
                         border: 1px solid #dddddd;
@@ -40,8 +41,19 @@ const WriteFormStyle = styled.div`
                         margin-bottom: 0.8rem;
                     }
 
+                    .kindSelect {
+                        width: 100%;
+                        max-width:600px;
+                        height: 2.5rem;
+                        margin-bottom: 0.8rem;
+                        border: 1px solid #dddddd;
+                        border-radius: 5px;
+                        padding-left: 0.5rem;
+                    }
+
                     .reviewTextarea {
                         width: 100%;
+                        max-width:600px;
                         height: 15rem;
                         resize: none;
                         border: 1px solid #dddddd;
@@ -72,28 +84,27 @@ interface WriteInfo {
     keyword: string,
     placeInfo: string,
     review: string,
-    uploadFile: File | string
+    uploadFile: File | string,
+    kind: string
 }
 
 const WriteForm = () => {
-    // const name:string | null = `${localStorage.getItem('ourplace_name')}`;
     const [writeInfo , setWriteInfo] = useState<WriteInfo>({
         storeName: "",
         subway: "",
         keyword: "",
         placeInfo: "",
         review: "",
-        uploadFile: ""
+        uploadFile: "",
+        kind: "restaurant"
     });
 
     //등록한 이미지 저장
     const onChangeImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
+        // e.preventDefault();
         const targetName = e.target.name;
         
         if(e.target.files){
-            // uploadFile = e.target.files[0]
-
             await setWriteInfo({ 
                 ...writeInfo,
                 [targetName]: e.target.files[0] // name 키를 가진 값을 이벤트가 발생한 value로 변경
@@ -102,19 +113,9 @@ const WriteForm = () => {
     }
 
     //write form 상태 값 변경
-    const userInfoWrite = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const userInfoWrite = async (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const targetName = e.target.name;
 
-        await setWriteInfo({ 
-            ...writeInfo,
-            [targetName]: e.target.value // name 키를 가진 값을 이벤트가 발생한 value로 변경
-        });
-    }
-
-    //리뷰 상태 값 변경
-    const userInfoWriteTextArea = async (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const targetName = e.target.name;
-        
         await setWriteInfo({ 
             ...writeInfo,
             [targetName]: e.target.value // name 키를 가진 값을 이벤트가 발생한 value로 변경
@@ -135,6 +136,7 @@ const WriteForm = () => {
         formData.append('keyword',writeInfo.keyword);
         formData.append('placeInfo',writeInfo.placeInfo);
         formData.append('review',writeInfo.review);
+        formData.append('kind',writeInfo.kind);
         
         await axios({
             method: 'post',
@@ -174,6 +176,20 @@ const WriteForm = () => {
                             />
                         </li>
                         <li className="writeInfoList">
+                            <p className="writeTitle">종류</p>
+                            <select 
+                                name="kind" 
+                                className="kindSelect"
+                                onChange={userInfoWrite}
+                            >
+                                <option value="restaurant">맛집</option>
+                                <option value="pub">술집</option>
+                                <option value="cafe">카페</option>
+                                <option value="etc">기타</option>
+                            </select>
+                            <p>선택 옵션: {writeInfo.kind}</p>
+                        </li>
+                        <li className="writeInfoList">
                             <p className="writeTitle">가까운 지하철역</p>
                             <input type="text"
                                 className="writeInput" 
@@ -204,7 +220,7 @@ const WriteForm = () => {
                             <p className="writeTitle">다녀온 후기</p>
                             <textarea name="review" 
                                 className="reviewTextarea"
-                                onChange={userInfoWriteTextArea}
+                                onChange={userInfoWrite}
                             >
                             </textarea>
                         </li>
