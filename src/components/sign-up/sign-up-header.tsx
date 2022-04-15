@@ -23,7 +23,7 @@ const SignUpHeader = () => {
     return (
         <SignUpHeaderStyle>
             <div className="signUpHeaderContainer">
-                <span onClick={()=>navigate(-1)}>{`<-`}</span>
+                <Link to="/login">{`<-`}</Link>
                 <span className="pageTitle">회원가입</span>
             </div>
         </SignUpHeaderStyle>
