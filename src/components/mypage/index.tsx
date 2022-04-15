@@ -35,6 +35,7 @@ const MypageComponent = () => {
 
     const logout = async () => {
         await localStorage.removeItem('ourplace_name');
+        await localStorage.removeItem('ourplace_id');
         window.location.href = '/';
     }
 

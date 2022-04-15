@@ -36,13 +36,8 @@ const MypageMenu = () => {
                         </Link>    
                     </li>
                     <li className="mypageMenuList">
-                        <Link to="/mypage/">
-                            
-                        </Link>    
-                    </li>
-                    <li className="mypageMenuList">
-                        <Link to="/mypage/">
-                        
+                        <Link to="/mypage/withdrawal">
+                            회원탈퇴
                         </Link>    
                     </li>
                 </ul>

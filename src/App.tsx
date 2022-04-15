@@ -10,6 +10,7 @@ import Store from './pages/store';
 import Mypage from './pages/mypage';
 import MypageReview from './components/mypage/review';
 import Kind from './pages/kind';
+import Withdrawal from './pages/mypage/withdrawal';
 
 const AppStyle = styled.div`
   width: 100vw;
@@ -44,6 +45,7 @@ function App() {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/mypage/review" element={<MypageReview />} />
           <Route path="/kind/:kindIndex" element={<Kind />} />
+          <Route path="/mypage/withdrawal" element={<Withdrawal />} />
         </Routes>
       </BrowserRouter>
     </AppStyle>
