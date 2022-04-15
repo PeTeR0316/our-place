@@ -77,7 +77,6 @@ const ReviewListFrame = ({ place_name, subway, keyword, user_name, write_date, f
     const reviewUrl = "https://our-place.s3.ap-northeast-2.amazonaws.com/write-img/";
 
     const deleteReview = () => {
-        console.log("delete");
         axios.delete(`http://localhost:3001/mypage/review/delete/${file_src}`)
         .then(response => {
             if(response.data) {

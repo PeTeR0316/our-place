@@ -87,18 +87,6 @@ const SignInForm = () => {
         .catch(err => {
             if(err) alert("로그인에 실패하였습니다.")
         });
-
-        // await axios.post("http://localhost:3001/member/signin",loginInfo)
-        // .then((response) => {
-        //     if(response.data[0].count > 0) {
-        //         window.location.href = '/'; //작성 완료 후 게시글 페이지로 이동    
-        //     } else {
-        //         alert('아이디 또는 패스워드가 잘못되었습니다.');
-        //     }
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });
     }
 
     return (
