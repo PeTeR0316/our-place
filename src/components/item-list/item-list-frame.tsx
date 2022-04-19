@@ -56,18 +56,6 @@ interface ReviewProps {
 const ItemListFrame = ({ place_name, subway, keyword, user_name, write_date, file_src}: ReviewProps) => {
     const reviewUrl = "https://our-place.s3.ap-northeast-2.amazonaws.com/write-img/";
 
-    // useEffect(() => {
-    //     async function getStoreInfo() {
-    //         await axios.get(`http://localhost:3001/store/detail/${imgName}`)
-    //             .then(response => {
-    //                 setStoreInfo(response.data);
-    //             })
-    //             .catch(err => console.log(err))   
-    //     }
-
-    //     getStoreInfo();
-    // },[])
-
     return (
         <ItemListFrameStyle>
             <Link to={`/store/${file_src}`}>

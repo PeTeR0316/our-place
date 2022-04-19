@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/modules";
+import { filterValue } from "../../redux/modules/filter";
 
 const ItemListFilterStyle = styled.div`
     width: 100%;
@@ -31,15 +34,25 @@ interface ReviewCountProps {
 
 const ItemListFilter = ({count}: ReviewCountProps) => {
     const [listCount, setListCount] = useState<number>(0);
+    const filter = useSelector((state: RootState) => state.filter.filter) //리듀서.상태값
+    const dispatch = useDispatch();
+
+    const filterSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        dispatch(filterValue(value));
+    };
 
     return (
         <ItemListFilterStyle>
             <div className="filterContainer">
                 <span className="resultCount">총 {count}개 결과</span>
 
-                <select name="filter" className="filterSelect">
-                    <option value="new">최신순</option>
-                    <option value="popular">인기순</option>
+                <select name="filter" 
+                    className="filterSelect"
+                    onChange={filterSelect}
+                >
+                    <option value="latest">최신순</option>
+                    <option value="popularity">인기순</option>
                 </select>
             </div>
         </ItemListFilterStyle>

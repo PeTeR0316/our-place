@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/modules";
 
 import KindReviewListFilter from "./kind-review-list-filter";
 import KindReviewListFrame from "./kind-review-list-frame";
@@ -45,7 +47,6 @@ interface StoreInfo {
 
 const KindReviewList = () => {
     const { kindIndex } = useParams(); 
-
     const [itemListCount, setItemListCount] = useState<number>(5);
     const [reviewListInfo, setReviewListInfo] = useState<StoreInfo[]>([
         {
@@ -60,16 +61,16 @@ const KindReviewList = () => {
             email: ""
         }
     ])
-    const reviewUrl = "https://our-place.s3.ap-northeast-2.amazonaws.com/write-img/";
+    const filter = useSelector((state: RootState) => state.filter.filter); //리듀서.상태값
 
     //s3 버킷에서 리뷰 이미지 파일명 요청
     useEffect(() => {
-        axios.get(`http://localhost:3001/reviewList/kind/${kindIndex}`)
+        axios.get(`http://localhost:3001/reviewList/kind/${kindIndex}/${filter}`)
             .then(response => {
                 setReviewListInfo(response.data)
             })
             .catch(err => console.log(err));
-    },[kindIndex]);
+    },[kindIndex, filter]);
 
     return (
         <ItemListStyle>

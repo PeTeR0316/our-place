@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/modules";
 
 import ItemListFilter from "./item-list-filter";
 import ItemListFrame from "./item-list-frame";
@@ -57,22 +59,21 @@ const ItemList = () => {
             email: ""
         }
     ])
-    const reviewUrl = "https://our-place.s3.ap-northeast-2.amazonaws.com/write-img/";
+    const filter = useSelector((state: RootState) => state.filter.filter); //리듀서.상태값
 
     //s3 버킷에서 리뷰 이미지 파일명 요청
     useEffect(() => {
-        axios.get('http://localhost:3001/reviewList/list')
+        axios.get(`http://localhost:3001/reviewList/list/${filter}`)
             .then(response => {
-                // setReviewImg(response.data.filter((src:string) => src !== ''));
                 setReviewListInfo(response.data)
             })
             .catch(err => console.log(err));
-    },[]);
+    },[filter]);
 
     return (
         <ItemListStyle>
             <ItemListFilter count={`${reviewListInfo.length}`} />
-
+            
             {reviewListInfo.map((reviewinfo, index) => {
                 if(index < itemListCount) {
                     return (
